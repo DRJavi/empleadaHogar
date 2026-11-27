@@ -68,3 +68,33 @@ Rama: `feature/spec-002-mejora-seo`. Cambios aplicados solo en el repositorio (4
 - **Plantilla de Blogger:** parte de la cabecera (Open Graph, `lang`) puede proceder del tema. Si tras publicar no aparece en producción, se anotará "no publicada por la plantilla" y pasa a la spec 003.
 - **Aplazado a la spec 003:** `noindex` de las 4 utilitarias y su exclusión del sitemap, imagen Open Graph propia 1200×630, dirección, horario y perfil de Google Business, contenido propio por ciudad y `datePublished`.
 - **T7.4 y T7.5** se hacen cuando el propietario publique: verificar cada requisito en producción con `curl` y repetir S3, S5, S7, S8, S11, S12, D1 y P8.
+
+## Verificación en producción (27/11/2026)
+
+Comprobación de solo lectura de las 43 URLs publicadas, tras publicar el propietario los cambios.
+
+| Requisito | Resultado en producción |
+|---|---|
+| Estado HTTP | 43 de 43 responden 200 |
+| RF-1, RF-3 | publicado: `og:image` y `twitter:image` en 43; 0 `og:title` y `og:url` duplicados; imagen 200, JPEG, 109 KB |
+| RF-2 | **no publicado**: `og:image:width` y `og:image:height` no aparecen; `og:image:alt` sale cortado ("…rellenado", sin ", página 1") |
+| RF-4 | publicado: `og:title` de la home = `<title>` |
+| RF-5 a RF-8 | publicado: JSON-LD válido, 0 bloques con entidades HTML; sin JSON-LD solo las 4 utilitarias |
+| RF-7, RF-25, RF-26 | publicado: home con móvil y fijo; Madrid con `Service`, `areaServed` y teléfono fijo, sin `LocalBusiness` |
+| RF-16, RF-28 | publicado: sin referencias a `blog-post` ni `tel:` sin `+` |
+| RF-17, RF-23 | publicado: "Más sobre" en 20 páginas; "Fuentes oficiales" en los 4 posts |
+| RF-18 a RF-21 | publicado: `informacion-para-ia` con título, descripción y 9 fuentes de BOE |
+| RF-22, RF-24 | publicado: 0 H2 "Preguntas frecuentes" genéricos; autora "Petri Borondo Martín" con tilde y firma visible |
+| RF-29 | publicado: `lang='es'` en 43 |
+| RF-30 | publicado: `phone_click` y `email_click` en 43 (disparo real sin verificar: requiere DebugView de GA4) |
+| RF-11 | **cumplido por el propietario**: `ficha-de-alta`, `incidencias-del-mes`, `iniciar-contratacion` y `formulario-prl` devuelven `X-Robots-Tag: noindex` (antes `all`) |
+| RF-12 | limitación confirmada: las 4 siguen listadas en `sitemap-pages.xml` (3) y `sitemap.xml` (`formulario-prl`) |
+
+### No publicado por la plantilla
+- `og:image:width` y `og:image:height` (RF-2) y el `alt` de la imagen, cortado. Pasan a la spec 003.
+
+### Para la spec 003
+- Documentar o resolver que las 4 páginas con `noindex` siguen en el sitemap.
+- Ancho, alto y `alt` de la imagen Open Graph (junto con la imagen propia de 1200×630).
+- Verificar el disparo real de `phone_click`, `email_click` y `whatsapp_click` en GA4.
+- Confirmar la indexación y los datos estructurados en Search Console.

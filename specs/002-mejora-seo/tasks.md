@@ -85,8 +85,8 @@ Convención: `[ ]` pendiente. Cada tarea indica el requisito (RF), los archivos 
   - Verificación: `git diff --stat` y recuento por archivo.
 - [x] **T7.2** Redactar `specs/002-mejora-seo/cierre.md` con la línea base frente al estado final, las limitaciones y el resumen de archivos para el propietario. **Aprobación del propietario antes de publicar.**
 - [x] **T7.3** Verificación de enlaces: ningún enlace interno roto ni HTML sin cerrar en los archivos modificados.
-- [ ] **T7.4** (tras la publicación por el propietario) Verificar en producción con `curl` cada requisito y anotar "publicado", "no publicado por la plantilla" o "aplazado".
-- [ ] **T7.5** Repetir S3, S5, S7, S8, S11, S12, D1, P4 y P8 y actualizar su estado.
+- [x] **T7.4** (tras la publicación por el propietario) Verificar en producción con `curl` cada requisito y anotar "publicado", "no publicado por la plantilla" o "aplazado".
+- [x] **T7.5** Repetir S3, S5, S7, S8, S11, S12, D1, P4 y P8 y actualizar su estado.
 
 ## Dependencias
 - T1.x, T2.x, T3.x, T5.x y T6.x son independientes entre sí.
